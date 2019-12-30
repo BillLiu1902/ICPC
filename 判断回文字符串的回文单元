@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool hw(string a){
+    int n=a.size()-1;
+    int i;
+    for(i=n;i>=0;i--){
+        if(a[i]!=a[n-i]){
+            return false;
+        }
+    }
+    return true;
+}
+int main(){
+    string a;
+    while(cin>>a)
+    {
+        int n=a.size();
+    while(n%2==0&&hw(a)){
+        n/=2;
+        a.erase(n,n*2);
+    }
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i];
+    }
+    cout<<endl;
+    }
+ 
+ 
+    return 0;
+}
