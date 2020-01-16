@@ -1,0 +1,62 @@
+爱丽丝（Alice），鲍勃（Bob）和查理（Charlie）正在玩“三人制”纸牌游戏，如下所示：
+
+首先，三个玩家中的每个人都有一个由若干张纸牌组成的套牌。每张卡上都有字母a，b或c。卡组中卡的顺序无法重新排列。
+玩家轮流玩。爱丽丝先行。
+如果当前玩家的套牌中至少包含一张牌，则丢弃套牌中的第一张牌。然后，名字以被弃卡上的字母开头的玩家开始下一回合。（例如，如果卡上显示a，则Alice进行下一回合。）
+如果当前玩家的牌组为空，则游戏结束，当前玩家获胜。
+您将获得球员的初始牌组。更具体地说，将为您提供三个字符串SA，SB和SC。SA中的第i个（1≦i≦| SA |）字母是Alice的初始卡片组中第i个卡片上的字母。SB和SC以相同的方式描述Bob和Charlie的初始套牌。
+
+确定游戏的获胜者。
+
+约束
+1≦| SA |≦100
+1≦| SB |≦100
+1≦| SC |≦100
+SA，SB，SC中的每个字母均为a，b或c。
+样例输入 Copy
+aca
+accc
+ca
+样例输出 Copy
+A
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    char s[3][2000];
+
+    for(int i=0; i<3; i++)
+    {
+        cin>>s[i];
+    }
+    queue<char>q[3];
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<strlen(s[i]);j++)
+        {
+            q[i].push(s[i][j]);
+        }
+    }
+    int x='a',y;
+    while(1)
+    {
+        y=x;
+        x=q[x-'a'].front();//下回合是谁
+        q[y-'a'].pop();//去掉这一轮首字母；
+        cout<<(char)x<<" "<<(char)y<<endl;
+        if(q[x-'a'].empty())
+        {
+            cout<<(char)(x-32)<<endl;
+            break;
+        }
+
+    }
+
+
+
+    return 0;
+}
